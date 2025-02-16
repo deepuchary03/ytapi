@@ -1,5 +1,5 @@
-const API_KEY = 'AIzaSyCt1iRu4NJMFeHjh3F9F2IKrUcg-6lxrb8';
-const BASE_URL = 'https://www.googleapis.com/youtube/v3';
+const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
+const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 export const searchVideos = async (query: string) => {
   try {
@@ -7,7 +7,7 @@ export const searchVideos = async (query: string) => {
       `${BASE_URL}/search?part=snippet&maxResults=12&q=${query}&type=video&key=${API_KEY}`
     );
     if (!response.ok) {
-      throw new Error('API request failed');
+      throw new Error("API request failed");
     }
     const data = await response.json();
     if (data.error) {
@@ -15,7 +15,7 @@ export const searchVideos = async (query: string) => {
     }
     return data;
   } catch (error) {
-    console.error('YouTube API Error:', error);
+    console.error("YouTube API Error:", error);
     throw error;
   }
-}
+};
